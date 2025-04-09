@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "dist",              // sem './' aqui é melhor
+    "baseUrl": ".",                // base relativa à pasta backend
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "typeRoots": ["../node_modules/@types"], // sobe um nível pq node_modules está no projeto raiz
+    "skipLibCheck": true
+  },
+  "include": ["./**/*.ts"]
+}
