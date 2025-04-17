@@ -46,7 +46,7 @@ export async function createLead(leadData: any) {
         document: cnpj,
         monthlyBillingAmount: billingAmount,
         legalRepresentativeName: legalRepName,
-        legalRepresentativeDocument: legalRepDoc,
+        legalRepresentativeDocument: legalRepDocument,
       },
       creditInfo: {
         availableLimit,
