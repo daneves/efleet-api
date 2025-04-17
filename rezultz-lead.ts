@@ -2,7 +2,20 @@ import axios from 'axios';
 
 export async function createLead(leadData: any) {
   try {
-    const { name, email, phone, company, cnpj } = leadData;
+    const {
+      name,
+      email,
+      phone,
+      company,
+      cnpj,
+      billingAmount,
+      legalRepName,
+      legalRepDoc,
+      availableLimit,
+      requestLimit,
+      availableTerm,
+      requestTerm,
+    } = leadData;
 
     const auth = await axios.post(
       'https://api-auth.rezultz.com.br/oauth2/token',
@@ -18,39 +31,42 @@ export async function createLead(leadData: any) {
 
     const token = auth.data.access_token;
 
-    const response = await axios.post(
-      'https://api.rezultz.com.br/lead',
-      {
-        type: 'buyer',
-        referer: 'Formulário Site',
-        fingerprintId: '123',
-        policyAccept: true,
-        contact: {
-          name,
-          email,
-          mobile: phone,
-        },
-        company: {
-          name: company,
-          document: cnpj,
-        },
-        creditInfo: {
-          availableLimit: 0,
-          requestLimit: 0,
-          availableTerm: 0,
-          requestTerm: 0,
-        },
-        seller: {
-          name: company,
-        },
+    const payload = {
+      type: 'buyer',
+      referer: 'Formulário Site',
+      fingerprintId: '123',
+      policyAccept: true,
+      contact: {
+        name,
+        email,
+        mobile: phone,
       },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+      company: {
+        name: company,
+        document: cnpj,
+        monthlyBillingAmount: billingAmount,
+        legalRepresentativeName: legalRepName,
+        legalRepresentativeDocument: legalRepDoc,
+      },
+      creditInfo: {
+        availableLimit,
+        requestLimit,
+        availableTerm,
+        requestTerm,
+      },
+      seller: {
+        name: company,
+      },
+    };
+
+    console.log('Enviando para Rezultz:', payload);
+
+    const response = await axios.post('https://api.rezultz.com.br/lead', payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
 
     return response.data;
   } catch (error: any) {
