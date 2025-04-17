@@ -10,7 +10,7 @@ export async function createLead(leadData: any) {
       cnpj,
       billingAmount,
       legalRepName,
-      legalRepDoc,
+      legalRepDocument, // ✅ Nome corrigido aqui
       availableLimit,
       requestLimit,
       availableTerm,
@@ -46,7 +46,7 @@ export async function createLead(leadData: any) {
         document: cnpj,
         monthlyBillingAmount: billingAmount,
         legalRepresentativeName: legalRepName,
-        legalRepresentativeDocument: legalRepDocument,
+        legalRepresentativeDocument: legalRepDocument, // ✅ Nome correto agora
       },
       creditInfo: {
         availableLimit,
