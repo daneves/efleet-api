@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import leadRouter from './leadRouter'; // ou o caminho correto
+import { leadRouter } from './leadRouter'; // ✅ Correto!
 
 const app = express();
 const PORT = process.env.PORT || 3001;
