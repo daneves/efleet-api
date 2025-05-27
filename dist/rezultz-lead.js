@@ -36,7 +36,7 @@ async function createLead(leadData) {
             requestTerm: 0,
         },
         seller: {
-            name: company,
+            name: eFleet,
         },
     }, {
         headers: {
