@@ -55,7 +55,7 @@ export async function createLead(leadData: any) {
         requestTerm,
       },
       seller: {
-        name: eFleet,
+        name: "eFleet",
       },
     };
 
